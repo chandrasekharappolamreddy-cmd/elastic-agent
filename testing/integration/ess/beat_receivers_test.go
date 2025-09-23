@@ -870,9 +870,17 @@ agent.monitoring.enabled: false
 			break
 		}
 	}
-	assert.NotNil(t, unsupportedLogRecord)
+
+	t.Cleanup(func() {
+		if t.Failed() {
+			t.Log("Elastic-Agent logs seen by the test:")
+			t.Log(string(logsBytes))
+		}
+	})
+
+	require.NotNil(t, unsupportedLogRecord, "unsupported log message should be present")
 	message, ok := unsupportedLogRecord["message"].(string)
-	require.True(t, ok)
+	require.True(t, ok, "log message field should be a string")
 	expectedMessage := "otel runtime is not supported for component system/metrics-default, switching to process runtime, reason: unsupported configuration for system/metrics-default: error translating config for output: default, unit: system/metrics-default, error: allow_older_versions:false is currently not supported: unsupported operation"
 	assert.Equal(t, expectedMessage, message)
 }
