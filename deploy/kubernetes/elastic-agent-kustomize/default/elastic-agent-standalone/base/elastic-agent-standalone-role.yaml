@@ -73,7 +73,7 @@ kind: Role
 metadata:
   name: elastic-agent-standalone
   # Should be the namespace where elastic-agent is running
-  namespace: kube-system
+  namespace: elastic-stack
   labels:
     app.kubernetes.io/name: elastic-agent-standalone
 rules:
@@ -87,7 +87,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: elastic-agent-standalone-kubeadm-config
-  namespace: kube-system
+  namespace: elastic-stack
   labels:
     app.kubernetes.io/name: elastic-agent-standalone
 rules:
