@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: elastic-agent-standalone
-  namespace: kube-system
+  namespace: kube-stack
   labels:
     app: elastic-agent-standalone
 spec:
