@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: elastic-agent-standalone
-  namespace: kube-system
+  namespace: elastic-stack
   labels:
     app.kubernetes.io/name: elastic-agent-standalone
 spec:
@@ -149,11 +149,11 @@ spec:
         - name: sys-kernel-debug
           hostPath:
             path: /sys/kernel/debug
-        # Mount /var/lib/elastic-agent-managed/kube-system/state to store elastic-agent state
-        # Update 'kube-system' with the namespace of your agent installation
+        # Mount /var/lib/elastic-agent-managed/elastic-stack/state to store elastic-agent state
+        # Update 'elastic-stack' with the namespace of your agent installation
         - name: elastic-agent-state
           hostPath:
-            path: /var/lib/elastic-agent-standalone/kube-system/state
+            path: /var/lib/elastic-agent-standalone/elastic-stack/state
             type: DirectoryOrCreate
         # Uncomment if using hints feature
         # - name: external-inputs
